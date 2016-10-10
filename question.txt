@@ -1,0 +1,10 @@
+Exercise:
+
+    The candidate is asked to write, in the main() function, the C code
+    necessary to retrieve and print to stdout the current year by using the
+    devices provided by the platform (QEMU's virt model).  The minimal
+    libraries already included have to be enough to complete the test.
+    The README includes enough information to compile the sources.
+
+    The solution has to be a GIT patch that applies correctly to the provided
+    source code.
