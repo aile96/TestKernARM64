@@ -17,11 +17,13 @@ CPPFLAGS  += -gdwarf-2 -fno-stack-protector -nostdinc -fno-builtin
 #
 clean: export DIRS = build-virt
 
-virt:   export CPPFLAGS += -march=armv7-a
+virt: export ARCH = ARCH_AARCH64
+#virt:   export ARCH = ARCH_ARM
+#virt:   export CPPFLAGS += -march=armv7-a
 
-virt:   export CROSS_COMPILE ?= arm-none-eabi-
+virt:   export CPPFLAGS += -march=armv8-a+nofp -mcpu=cortex-a53+nofp -mno-outline-atomics
 
-virt:   export ARCH = ARCH_ARM
+virt:   export CROSS_COMPILE ?= aarch64-linux-gnu-
 
 virt: export UART_PHYS = 0x09000000
 virt: export ENTRY_POINT = 0x40000000

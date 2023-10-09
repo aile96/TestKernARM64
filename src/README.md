@@ -8,8 +8,8 @@ Compiling
 Usage
 =====
 
-Example: qemu-system-arm
-		-nographic -smp N
-		-M virt -cpu cortex-a15
+Example: qemu-system-aarch64
+		-nographic
+		-M virt -cpu cortex-a53
 		-kernel build-virt/image-virt.axf
 

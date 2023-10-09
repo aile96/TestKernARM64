@@ -39,10 +39,6 @@
 #define LOCK   atomic_lock
 #define UNLOCK atomic_unlock
 
-int global_lock;
-
-int online_cpus;
-
 int get_cpuid(void);
 void shut_down();
 

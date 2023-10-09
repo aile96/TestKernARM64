@@ -17,6 +17,9 @@
 
 #include "helpers.h"
 
+int global_lock;
+int online_cpus;
+
 #ifdef ARCH_ARM
 __asm__(".arch_extension virt");
 
@@ -58,10 +61,11 @@ void shut_down(void)
 
 void atomic_lock(int *lock_var)
 {
-    while (__sync_lock_test_and_set(lock_var, 1));
+    int expected = 0;
+    __atomic_compare_exchange_n(lock_var, &expected, 1, 0, __ATOMIC_ACQUIRE, __ATOMIC_RELAXED);
 }
 
 void atomic_unlock(int *lock_var)
 {
-    __sync_lock_release(lock_var);
+    __atomic_store_n(lock_var, 0, __ATOMIC_RELEASE);
 }
