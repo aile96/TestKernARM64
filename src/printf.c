@@ -52,7 +52,7 @@ static void print_str(char *s)
     }
 }
 
-static void print_num(unsigned long long value, int base)
+void print_num(unsigned long long value, int base)
 {
     char digits[] = "0123456789abcdef";
     /* This is not working with arm-none-eabi-gcc v5.1, since memset is not

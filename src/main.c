@@ -19,5 +19,6 @@
 
 void main(void)
 {
-    shut_down();
+	print_year();
+	shut_down();
 }

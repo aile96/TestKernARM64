@@ -46,5 +46,7 @@ void atomic_lock(int *lock_var);
 void atomic_unlock(int *lock_var);
 
 void printf(const char *fmt, ...);
+void print_num(unsigned long long value, int base);
+void print_year();
 
 #endif

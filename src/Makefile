@@ -5,7 +5,7 @@ CC = $(CROSS_COMPILE)gcc
 LD = $(CROSS_COMPILE)ld
 
 S_OBJS    = start.o
-C_OBJS    = main.o printf.o helpers.o
+C_OBJS    = main.o printf.o rtc.o helpers.o
 H_DEPS    = helpers.h
 LD_SCRIPT = link.ld.S
 
@@ -26,6 +26,7 @@ virt:   export CPPFLAGS += -march=armv8-a+nofp -mcpu=cortex-a53+nofp -mno-outlin
 virt:   export CROSS_COMPILE ?= aarch64-linux-gnu-
 
 virt: export UART_PHYS = 0x09000000
+virt: export RTC_PHYS = 0x09010000
 virt: export ENTRY_POINT = 0x40000000
 
 virt: export O_DIR = build-$@/
@@ -57,7 +58,7 @@ $(O_DIR)link.ld: $(LD_SCRIPT)
 
 $(O_DIR)%.o: %.c $(H_DEPS)
 	$(CC) -DENTRY_POINT=$(ENTRY_POINT) -D$(BOARD_MODEL) \
-          -DUART_PHYS=$(UART_PHYS) -D$(ARCH) $(CPPFLAGS) -c -o $@ $<
+          -DUART_PHYS=$(UART_PHYS) -DRTC_PHYS=$(RTC_PHYS) -D$(ARCH) $(CPPFLAGS) -c -o $@ $<
 
 $(O_DIR)%.o: %.S $(H_DEPS)
 	$(CC) -D$(ARCH) $(CPPFLAGS) -c -o $@ $<
